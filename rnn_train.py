@@ -171,7 +171,7 @@ for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_
         txt.print_text_generation_header()
         ry = np.array([[txt.convert_from_alphabet(ord("K"))]])
         rh = np.zeros([1, INTERNALSIZE * NLAYERS])
-        for k in range(1000):
+        for k in range(2500):
             ryo, rh = sess.run([Yo, H], feed_dict={X: ry, pkeep: 1.0, Hin: rh, batchsize: 1})
             rc = txt.sample_from_probabilities(ryo, topn=10 if epoch <= 1 else 2)
             print(chr(txt.convert_to_alphabet(rc)), end="")
