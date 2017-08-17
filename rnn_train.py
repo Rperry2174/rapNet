@@ -37,11 +37,11 @@ tf.set_random_seed(0)
 #         To see the curves drift apart ("overfitting") try to use an insufficient amount of
 #         training data (shakedir = "shakespeare/t*.txt" for example)
 #
-SEQLEN = 30
-BATCHSIZE = 200
+SEQLEN = 50
+BATCHSIZE = 300
 ALPHASIZE = txt.ALPHASIZE
 INTERNALSIZE = 512
-NLAYERS = 3
+NLAYERS = 4
 learning_rate = 0.001  # fixed learning rate
 dropout_pkeep = 0.8    # some dropout
 
@@ -124,7 +124,7 @@ if not os.path.exists("checkpoints"):
 saver = tf.train.Saver(max_to_keep=1000)
 
 # for display: init the progress bar
-DISPLAY_FREQ = 50
+DISPLAY_FREQ = 100
 _50_BATCHES = DISPLAY_FREQ * BATCHSIZE * SEQLEN
 progress = txt.Progress(DISPLAY_FREQ, size=111+2, msg="Training on next "+str(DISPLAY_FREQ)+" batches")
 
@@ -136,7 +136,7 @@ sess.run(init)
 step = 0
 
 # training loop
-for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_epochs=10):
+for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_epochs=12):
 
     # train on one minibatch
     feed_dict = {X: x, Y_: y_, Hin: istate, lr: learning_rate, pkeep: dropout_pkeep, batchsize: BATCHSIZE}
