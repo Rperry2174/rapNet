@@ -43,7 +43,7 @@ ALPHASIZE = txt.ALPHASIZE
 INTERNALSIZE = 512
 NLAYERS = 4
 learning_rate = 0.001  # fixed learning rate
-dropout_pkeep = 0.8    # some dropout
+dropout_pkeep = 0.2    # some dropout
 
 # load data, either shakespeare, or the Python source of Tensorflow itself
 # shakedir = "shakespeare/*.txt"
