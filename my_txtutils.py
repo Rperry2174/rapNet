@@ -16,6 +16,7 @@
 import numpy as np
 import glob
 import sys
+import random
 
 # size of the alphabet that we work with
 ALPHASIZE = 98
@@ -245,6 +246,10 @@ def read_data_files(directory, validation=True):
     codetext = []
     bookranges = []
     shakelist = glob.glob(directory, recursive=True)
+    print("original shakelist: ", shakelist)
+    shakelist = random.shuffle(shakelist)
+    print("shuffled shakelist: ", shakelist)
+
     for shakefile in shakelist:
         shaketext = open(shakefile, "r")
         print("Loading file " + shakefile)
@@ -284,8 +289,8 @@ def read_data_files(directory, validation=True):
     nb_books3 = len(bookranges) // 5
 
     # pick the smallest
-    # nb_books = min(nb_books1, nb_books2, nb_books3)
-    nb_books = min(nb_books1, nb_books3)
+    nb_books = min(nb_books1, nb_books2, nb_books3)
+    # nb_books = min(nb_books1, nb_books3)
 
     if nb_books == 0 or not validation:
         cutoff = len(codetext)
