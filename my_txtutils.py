@@ -284,7 +284,8 @@ def read_data_files(directory, validation=True):
     nb_books3 = len(bookranges) // 5
 
     # pick the smallest
-    nb_books = min(nb_books1, nb_books2, nb_books3)
+    # nb_books = min(nb_books1, nb_books2, nb_books3)
+    nb_books = min(nb_books1, nb_books3)
 
     if nb_books == 0 or not validation:
         cutoff = len(codetext)
