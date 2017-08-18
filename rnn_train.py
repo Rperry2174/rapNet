@@ -43,7 +43,7 @@ ALPHASIZE = txt.ALPHASIZE
 INTERNALSIZE = 512
 NLAYERS = 4
 learning_rate = 0.001  # fixed learning rate
-dropout_pkeep = 0.2    # some dropout
+dropout_pkeep = 0.8    # some dropout
 
 # load data, either shakespeare, or the Python source of Tensorflow itself
 # shakedir = "shakespeare/*.txt"
@@ -136,7 +136,7 @@ sess.run(init)
 step = 0
 
 # training loop
-for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_epochs=12):
+for x, y_, epoch in txt.rnn_minibatch_sequencer(codetext, BATCHSIZE, SEQLEN, nb_epochs=15):
 
     # train on one minibatch
     feed_dict = {X: x, Y_: y_, Hin: istate, lr: learning_rate, pkeep: dropout_pkeep, batchsize: BATCHSIZE}
